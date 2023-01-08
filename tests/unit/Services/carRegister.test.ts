@@ -1,6 +1,8 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { Model } from 'mongoose';
+import ICar from '../../../src/Interfaces/ICar';
+import CarService from '../../../src/Services/CarService';
 
 describe('Rota de registro de carro', function () {
   it('Registrando o carro com sucesso', async function () {
