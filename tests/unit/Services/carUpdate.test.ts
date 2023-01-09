@@ -6,6 +6,27 @@ import CarService from '../../../src/Services/CarService';
 import ExpressError from '../../../src/utils/ExpressError';
 
 describe('Rota de listar o carro por id', function () {
+  const carInput: ICar = {
+    model: 'Marea',
+    year: 1992,
+    color: 'Red',
+    status: true,
+    buyValue: 12.000,
+    doorsQty: 2,
+    seatsQty: 5,
+  };
+
+  const carOutput: ICar = {
+    id: '634852326b35b59438fbea2f',
+    model: 'Marea',
+    year: 1992,
+    color: 'Red',
+    status: true,
+    buyValue: 12.000,
+    doorsQty: 2,
+    seatsQty: 5,
+  };
+
   afterEach(function () {
     sinon.restore();
   });
@@ -14,7 +35,7 @@ describe('Rota de listar o carro por id', function () {
 
     try {
       const service = new CarService();
-      await service.getById('id_invalido');
+      await service.update('id_invalido', carInput);
     } catch (error) {
       expect((error as ExpressError).status).to.be.equal(422);
       expect((error as ExpressError).message).to.be.equal(errorOutput);
@@ -23,32 +44,21 @@ describe('Rota de listar o carro por id', function () {
   it('Retorna um erro 404 se o carro não existe', async function () {
     const errorOutput = 'Car not found';
 
-    sinon.stub(Model, 'findById').resolves();
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(carOutput);
 
     try {
       const service = new CarService();
-      await service.getById('6348513f34c397abcad040b2');
+      await service.update('6348513f34c397abcad040b2', carInput);
     } catch (error) {
       expect((error as ExpressError).status).to.be.equal(404);
       expect((error as ExpressError).message).to.be.equal(errorOutput);
     }
   });
   it('Lista o carro por id com sucesso', async function () {
-    const carOutput: ICar = {
-      id: '6348513f34c397abcad040b2',
-      model: 'Marea',
-      year: 2002,
-      color: 'Black',
-      status: true,
-      buyValue: 15.990,
-      doorsQty: 4,
-      seatsQty: 5,
-    };
-
-    sinon.stub(Model, 'findById').resolves(carOutput);
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(carOutput);
 
     const service = new CarService();
-    const result = await service.getById('634852326b35b59438fbea2f');
+    const result = await service.update('634852326b35b59438fbea2f', carInput);
 
     expect(result).to.be.deep.equal(carOutput);
   });
