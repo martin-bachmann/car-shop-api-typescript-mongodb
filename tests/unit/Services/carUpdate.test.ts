@@ -5,7 +5,7 @@ import ICar from '../../../src/Interfaces/ICar';
 import CarService from '../../../src/Services/CarService';
 import ExpressError from '../../../src/utils/ExpressError';
 
-describe('Rota de listar o carro por id', function () {
+describe('Rota de atualizar o carro', function () {
   const carInput: ICar = {
     model: 'Marea',
     year: 1992,
@@ -54,7 +54,7 @@ describe('Rota de listar o carro por id', function () {
       expect((error as ExpressError).message).to.be.equal(errorOutput);
     }
   });
-  it('Lista o carro por id com sucesso', async function () {
+  it('Atualiza o carro por id com sucesso', async function () {
     sinon.stub(Model, 'findByIdAndUpdate').resolves(carOutput);
 
     const service = new CarService();
