@@ -31,6 +31,14 @@ class CarService {
     if (!car) throw new ExpressError(404, 'Car not found');
     return this.createCarDomain(car);
   }
+
+  public async update(id: string, car: ICar) {
+    if (!isValidObjectId(id)) throw new ExpressError(422, 'Invalid mongo id');
+    const carODM = new CarODM();
+    const updatedCar = await carODM.update(id, car);
+    if (!updatedCar) throw new ExpressError(404, 'Car not found');
+    return this.createCarDomain(updatedCar);
+  }
 }
 
 export default CarService;
