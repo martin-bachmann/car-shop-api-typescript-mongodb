@@ -22,6 +22,7 @@ describe('Rota de listar todos os carros', function () {
         model: 'Tempra',
         year: 1995,
         color: 'Black',
+        status: false,
         buyValue: 39,
         doorsQty: 2,
         seatsQty: 5,

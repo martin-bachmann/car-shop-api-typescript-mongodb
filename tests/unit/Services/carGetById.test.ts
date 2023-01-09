@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import { Model } from 'mongoose';
 import ICar from '../../../src/Interfaces/ICar';
 import CarService from '../../../src/Services/CarService';
-import ExpressError from '../../../src/utils/CustomError';
+import ExpressError from '../../../src/utils/ExpressError';
 
 describe('Rota de listar o carro por id', function () {
   afterEach(function () {
