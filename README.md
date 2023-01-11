@@ -1,4 +1,4 @@
-# Projeto TrybeSmith API (REST, TypeScript, MySQL)
+# Projeto CarShop API (REST, TypeScript, MongoDB, TDD)
 
 API para gerenciar uma concessionária de veículos, utilizando TypeScript e Mongoose para implementar diversas operações CRUD com banco de dados MongoDB. No desenvolvimento, foram utilizados o Test Driven Development(TDD) e a orientação a objetos. Projeto desenvolvido no modulo de BackEnd do curso da Trybe.
 
